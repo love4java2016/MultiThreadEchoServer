@@ -6,8 +6,23 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.util.LinkedList;
 
-public class EchoClient {
+public class EchoClient1 {
+    private LinkedList<ByteBuffer> outq;
+
+    public EchoClient1(LinkedList<ByteBuffer> outq) {
+        this.outq = outq;
+    }
+
+    public LinkedList<ByteBuffer> getOutputQueue() {
+        return outq;
+    }
+
+    public void enqueue(ByteBuffer bb) {
+        outq.addFirst(bb);
+    }
 
     public static void main(String[] args) throws IOException {
         Socket client = null;
